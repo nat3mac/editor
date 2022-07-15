@@ -1,0 +1,18 @@
+@use "color";
+
+.button {
+	font-size: 1rem;
+	font-weight: 500;
+	background: color.$indigo050;
+	color: color.$gray050;
+	padding: 0.5rem 1rem;
+	border: none;
+	border-radius: 2rem;
+	cursor: pointer;
+	transition: background-color 500ms;
+
+	&:hover {
+		transition: background-color 250ms;
+		background-color: color.$cyan500;
+	}
+}

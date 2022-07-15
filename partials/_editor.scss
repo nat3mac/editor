@@ -1,0 +1,88 @@
+@use "color";
+
+.editor {
+	grid-row: 2 / -1;
+	grid-column: 2 / -1;
+	display: grid;
+	grid-template-rows: auto auto 1fr auto;
+	background: color.$gray100;
+	overflow-y: auto;
+
+	& > header, & > footer {
+		padding: 1rem 0;
+		margin: 0 1rem;
+	}
+
+	& > header {
+		display: flex;
+		align-items: baseline;
+		justify-content: space-between;
+		border-bottom: solid 1px color.$gray200;
+		.heading {
+			color: color.$gray500;
+		}
+	}
+
+	& > footer {
+		position: sticky;
+		bottom: 0;
+		display: flex;
+		flex-flow: row nowrap;
+		justify-content: flex-end;
+		border-top: solid 1px color.$gray200;
+		background-color: color.$gray100;
+
+		button {
+
+		}
+	}
+
+	& > form {
+		align-self: stretch;
+	}
+}
+
+.toolbar {
+	position: sticky;
+	top: 0;
+	display: flex;
+	flex-flow: row wrap;
+	gap: 1rem;
+	padding: 1rem;
+	background: color.$gray100;
+
+	button {
+		background: none;
+		border: none;
+		cursor: pointer;
+
+		.icon {
+			transition: color 500ms;
+			color: color.$gray500;
+		}
+
+		&:hover .icon {
+			transition: color 250ms;
+			color: color.$indigo050;
+		}
+	}
+}
+
+.button-group {
+
+}
+
+#input {
+	padding: 1rem;
+	box-sizing: border-box;
+	overflow-y: auto;
+	max-height: 100%;
+	margin: 0 1rem;
+	background: color.$gray050;
+	color: color.$gray800;
+	box-shadow: 0 2px 4px rgba(color.$gray300, 0.25);
+	outline: none;
+}
+
+
+

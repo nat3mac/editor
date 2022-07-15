@@ -1,0 +1,50 @@
+@use "color";
+@use "type";
+
+.details {
+	background: color.$gray200;
+
+	padding: 1rem;
+
+	& > header {
+		display: grid;
+		grid-template-rows: repeat(2, auto);
+		grid-template-columns: 1fr 4fr;
+		align-items: center;
+		gap: 1rem;
+		background: color.$gray100;
+		padding: 1rem;
+		border-radius: 8px;
+		box-shadow: 8px 8px 12px 0 rgba(color.$gray300, 0.25),
+		-8px -8px 12px 0 rgba(color.$gray050, 0.5);
+
+		img {
+			border-radius: 50%;
+			grid-column: 1 / 2;
+			max-width: 100%;
+		}
+
+		.heading {
+			grid-column: 2 / -1;
+			color: color.$gray500;
+		}
+	}
+
+	dl {
+		grid-column: 1 / -1;
+		display: flex;
+		flex-flow: row wrap;
+		gap: 1rem;
+	}
+
+	dt {
+		@extend .caption;
+		color: color.$gray400;
+	}
+
+	dd {
+		@extend .copy;
+		margin: 0;
+		color: color.$gray600;
+	}
+}
