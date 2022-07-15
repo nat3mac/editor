@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Rich Text Editor</title>
+	<link rel="stylesheet" href="app.css">
+	<link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"
+	      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=block"/>
+</head>
+<body onload="initDoc();">
+<header>
+	<h1>Charty Pants</h1>
+</header>
+<section class="details">
+
+</section>
+<section class="editor">
+	<header>
+		<div class="toolbar">
+			<select onchange="formatDoc('formatblock',this[this.selectedIndex].value);this.selectedIndex=0;">
+				<option selected>Formatting</option>
+				<option value="h1">Title 1 &lt;h1&gt;</option>
+				<option value="h2">Title 2 &lt;h2&gt;</option>
+				<option value="h3">Title 3 &lt;h3&gt;</option>
+				<option value="h4">Title 4 &lt;h4&gt;</option>
+				<option value="h5">Title 5 &lt;h5&gt;</option>
+				<option value="h6">Subtitle &lt;h6&gt;</option>
+				<option value="p">Paragraph &lt;p&gt;</option>
+				<option value="pre">Preformatted &lt;pre&gt;</option>
+			</select>
+			<select onchange="formatDoc('fontname',this[this.selectedIndex].value);this.selectedIndex=0;">
+				<option class="heading" selected>Font</option>
+				<option>Arial</option>
+				<option>Arial Black</option>
+				<option>Courier New</option>
+				<option>Times New Roman</option>
+			</select>
+			<select onchange="formatDoc('fontsize',this[this.selectedIndex].value);this.selectedIndex=0;">
+				<option class="heading" selected>Size</option>
+				<option value="1">Very small</option>
+				<option value="2">A bit small</option>
+				<option value="3">Normal</option>
+				<option value="4">Medium-large</option>
+				<option value="5">Big</option>
+				<option value="6">Very big</option>
+				<option value="7">Maximum</option>
+			</select>
+			<select onchange="formatDoc('forecolor',this[this.selectedIndex].value);this.selectedIndex=0;">
+				<option class="heading" selected>Color</option>
+				<option value="red">Red</option>
+				<option value="blue">Blue</option>
+				<option value="green">Green</option>
+				<option value="black">Black</option>
+			</select>
+			<select onchange="formatDoc('backcolor',this[this.selectedIndex].value);this.selectedIndex=0;">
+				<option class="heading" selected>Background</option>
+				<option value="red">Red</option>
+				<option value="green">Green</option>
+				<option value="black">Black</option>
+			</select>
+		</div>
+		<div class="toolbar">
+			<button onclick="printDoc();">
+				<span class="icon">print</span>
+			</button>
+			<button onclick="formatDoc('undo');">
+				<span class="icon">undo</span>
+			</button>
+			<button onclick="formatDoc('redo');">
+				<span class="icon">redo</span>
+			</button>
+			<button onclick="formatDoc('removeFormat')">
+				<span class="icon">format_clear</span>
+			</button>
+			<button onclick="formatDoc('bold');">
+				<span class="icon">format_bold</span>
+			</button>
+			<button onclick="formatDoc('italic');">
+				<span class="icon">format_italic</span>
+			</button>
+			<button onclick="formatDoc('underline');">
+				<span class="icon">format_underlined</span>
+			</button>
+			<button onclick="formatDoc('justifyleft');">
+				<span class="icon">format_align_left</span>
+			</button>
+			<button onclick="formatDoc('justifycenter');">
+				<span class="icon">format_align_center</span>
+			</button>
+			<button onclick="formatDoc('justifyright');">
+				<span class="icon">format_align_right</span>
+			</button>
+			<button onclick="formatDoc('insertorderedlist');">
+				<span class="icon">format_list_numbered</span>
+			</button>
+			<button onclick="formatDoc('insertunorderedlist');">
+				<span class="icon">format_list_bulleted</span>
+			</button>
+			<button onclick="formatDoc('formatblock','blockquote');">
+				<span class="icon">format_quote</span>
+			</button>
+			<button onclick="formatDoc('outdent');">
+				<span class="icon">format_indent_decrease</span>
+			</button>
+			<button onclick="formatDoc('indent');">
+				<span class="icon">format_indent_increase</span>
+			</button>
+			<button class="intLink"
+			        onclick="var sLnk=prompt('Write the URL here','http:\/\/');if(sLnk&&sLnk!=''&&sLnk!='http://'){formatDoc('createlink',sLnk)}">
+				<span class="icon">add_link</span>
+			</button>
+			<button onclick="formatDoc('cut');">
+				<span class="icon">content_cut</span>
+			</button>
+			<button onclick="formatDoc('copy');">
+				<span class="icon">content_copy</span>
+			</button>
+			<button onclick="formatDoc('paste');">
+				<span class="icon">content_paste</span>
+			</button>
+		</div>
+	</header>
+	<form name="compForm" method="post"
+	      onsubmit="if(validateMode()){this.myDoc.value=oDoc.innerHTML;return true;}return false;">
+		<input type="hidden" name="myDoc">
+		<div id="input" contenteditable="true"><p>Lorem ipsum</p></div>
+	</form>
+	<footer>
+		<p id="editMode"><input type="checkbox" name="switchMode" id="switchBox" onchange="setDocMode(this.checked);"/>
+			<label for="switchBox">Show HTML</label></p>
+	</footer>
+</section>
+<script>
+	let oDoc, sDefTxt
+
+	function initDoc () {
+		oDoc = document.getElementById('input')
+		sDefTxt = oDoc.innerHTML
+		if (document.compForm.switchMode.checked) {
+			setDocMode(true)
+		}
+	}
+
+	function formatDoc (sCmd, sValue) {
+		if (validateMode()) {
+			document.execCommand(sCmd, false, sValue)
+			oDoc.focus()
+		}
+	}
+
+	function validateMode () {
+		if (!document.compForm.switchMode.checked) {
+			return true
+		}
+		alert('Uncheck "Show HTML".')
+		oDoc.focus()
+		return false
+	}
+
+	function setDocMode (bToSource) {
+		let oContent
+		if (bToSource) {
+			oContent = document.createTextNode(oDoc.innerHTML)
+			oDoc.innerHTML = ''
+			var oPre = document.createElement('pre')
+			oDoc.contentEditable = false
+			oPre.id = 'sourceText'
+			oPre.contentEditable = true
+			oPre.appendChild(oContent)
+			oDoc.appendChild(oPre)
+			document.execCommand('defaultParagraphSeparator', false, 'div')
+		} else {
+			if (document.all) {
+				oDoc.innerHTML = oDoc.innerText
+			} else {
+				oContent = document.createRange()
+				oContent.selectNodeContents(oDoc.firstChild)
+				oDoc.innerHTML = oContent.toString()
+			}
+			oDoc.contentEditable = true
+		}
+		oDoc.focus()
+	}
+
+	function printDoc () {
+		if (!validateMode()) {
+			return
+		}
+		const oPrintWin = window.open('', '_blank', 'width=450,height=470,left=400,top=100,menubar=yes,toolbar=no,location=no,scrollbars=yes')
+		oPrintWin.document.open()
+		oPrintWin.document.write('<!doctype html><html><head><title>Print<\/title><\/head><body onload="print();">' + oDoc.innerHTML + '<\/body><\/html>')
+		oPrintWin.document.close()
+	}
+</script>
+</body>
+</html>
