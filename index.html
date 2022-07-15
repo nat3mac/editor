@@ -9,18 +9,30 @@
 	<link rel="stylesheet" href="app.css">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,700;1,400;1,500&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,700;1,400;1,500&display=swap"
+	      rel="stylesheet">
 	<link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"
 	      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=block"/>
 </head>
 <body onload="initDoc();">
 <header>
-	<h1 class="display">Charty Pants</h1>
+	<h1 class="heading">Charty Pants</h1>
+	<nav>
+		<button class="nav-trigger">
+			<span class="icon">account_circle</span>
+		</button>
+		<ul class="nav-items">
+
+		</ul>
+	</nav>
 </header>
 <section class="details">
 	<header>
 		<img src="https://i.pravatar.cc/150?img=5" alt="">
-		<h2 class="heading">Jodie Tanner</h2>
+		<div class="patient-name">
+			<h2 class="heading">Jodie Tanner</h2>
+			<p class="caption">10945773598</p>
+		</div>
 		<dl>
 			<div>
 				<dt>Age</dt>
@@ -38,10 +50,23 @@
 				<dt>Weight</dt>
 				<dd>131 lb</dd>
 			</div>
+			<div>
+				<dt>Race</dt>
+				<dd>Caucasian</dd>
+			</div>
 		</dl>
 	</header>
-	<div>
-		<h3 class="subheading">History</h3>
+	<div class="details-section">
+		<h3 class="subheading">Allergies</h3>
+	</div>
+	<div class="details-section">
+		<h3 class="subheading">Medications</h3>
+	</div>
+	<div class="details-section">
+		<h3 class="subheading">Active Problems</h3>
+	</div>
+	<div class="details-section">
+		<h3 class="subheading">Last Filed Vitals</h3>
 	</div>
 </section>
 <section class="editor">
@@ -121,8 +146,8 @@
 		<div id="input" contenteditable="true"><p class="copy">Visit notes</p></div>
 	</form>
 	<footer>
-<!--		<p id="editMode"><input type="checkbox" name="switchMode" id="switchBox" onchange="setDocMode(this.checked);"/>-->
-<!--			<label for="switchBox">Show HTML</label></p>-->
+		<!--		<p id="editMode"><input type="checkbox" name="switchMode" id="switchBox" onchange="setDocMode(this.checked);"/>-->
+		<!--			<label for="switchBox">Show HTML</label></p>-->
 		<button type="submit" form="chart" class="button">Save Changes</button>
 	</footer>
 </section>
