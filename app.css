@@ -3,7 +3,7 @@
   line-height: 1.4142;
 }
 
-h1, h2, h3 {
+h1, h2, h3, p {
   margin: 0;
 }
 
@@ -17,7 +17,7 @@ h1, h2, h3 {
   font-weight: 700;
 }
 
-.subheading {
+.subheading, details summary {
   font-size: 1.308rem;
   font-weight: 700;
 }
@@ -54,9 +54,11 @@ body > header {
   align-items: center;
   justify-content: space-between;
   background: #FAFEFF;
-  color: #606D79;
   padding: 0.5rem 1rem;
   box-shadow: 0 2px 4px rgba(0, 17, 34, 0.0625);
+}
+body > header .heading {
+  color: #19227D;
 }
 
 .icon {
@@ -99,7 +101,7 @@ body > header {
   border-radius: 8px;
   box-shadow: 8px 8px 12px 0 rgba(192, 201, 208, 0.25), -8px -8px 12px 0 rgba(250, 254, 255, 0.5);
 }
-.details-section .subheading, .details > header .subheading {
+.details-section .subheading, .details-section details summary, details .details-section summary, .details > header .subheading, .details > header details summary, details .details > header summary {
   color: #606D79;
 }
 
@@ -112,6 +114,8 @@ body > header {
   overflow-y: auto;
 }
 .details > header {
+  position: sticky;
+  top: 0;
   display: grid;
   grid-template-rows: repeat(2, auto);
   grid-template-columns: 1fr 4fr;
@@ -119,19 +123,25 @@ body > header {
   gap: 1rem;
 }
 .details > header img {
-  border-radius: 50%;
   grid-column: 1/2;
   max-width: 100%;
+  border: solid 2px #00ADEF;
+  border-radius: 50%;
 }
 .details > header .patient-name {
   grid-column: 2/-1;
+}
+.details > header .patient-name .heading {
+  color: #606D79;
+}
+.details > header .patient-name .copy, .details > header .patient-name dd {
   color: #808C96;
 }
 .details dl {
   grid-column: 1/-1;
   display: flex;
   flex-flow: row wrap;
-  justify-content: space-between;
+  justify-content: space-around;
   gap: 1rem;
 }
 .details dt {
@@ -140,6 +150,26 @@ body > header {
 .details dd {
   margin: 0;
   color: #606D79;
+}
+
+#faq {
+  margin-top: -1px;
+}
+
+details {
+  padding: 1rem 0;
+  box-sizing: border-box;
+  transition: height 300ms cubic-bezier(0.4, 0.01, 0.165, 0.99);
+}
+details summary {
+  outline: none;
+  padding: 0;
+  list-style: none;
+}
+@media (hover: hover) {
+  details summary:hover {
+    cursor: pointer;
+  }
 }
 
 .editor {

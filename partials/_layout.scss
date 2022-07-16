@@ -22,8 +22,11 @@ body {
 		align-items: center;
 		justify-content: space-between;
 		background: color.$gray050;
-		color: color.$gray600;
 		padding: 0.5rem 1rem;
 		box-shadow: 0 2px 4px rgba(color.$gray900, 0.0625);
+
+		.heading {
+			color: color.$indigo500;
+		}
 	}
 }

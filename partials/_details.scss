@@ -1,5 +1,6 @@
 @use "color";
 @use "type";
+@use "icon";
 
 .details-section {
 	background: color.$gray100;
@@ -23,6 +24,8 @@
 
 	& > header {
 		@extend .details-section;
+		position: sticky;
+		top: 0;
 		display: grid;
 		grid-template-rows: repeat(2, auto);
 		grid-template-columns: 1fr 4fr;
@@ -30,14 +33,20 @@
 		gap: 1rem;
 
 		img {
-			border-radius: 50%;
 			grid-column: 1 / 2;
 			max-width: 100%;
+			border: solid 2px color.$cyan500;
+			border-radius: 50%;
 		}
 
 		.patient-name {
 			grid-column: 2 / -1;
-			color: color.$gray500;
+			.heading {
+				color: color.$gray600;
+			}
+			.copy {
+				color: color.$gray500;
+			}
 		}
 	}
 
@@ -45,7 +54,7 @@
 		grid-column: 1 / -1;
 		display: flex;
 		flex-flow: row wrap;
-		justify-content: space-between;
+		justify-content: space-around;
 		gap: 1rem;
 	}
 
@@ -60,4 +69,28 @@
 		color: color.$gray600;
 	}
 }
+
+#faq {
+	margin-top: -1px;
+}
+
+details {
+	padding: 1rem 0;
+	box-sizing: border-box;
+	transition: height 300ms cubic-bezier(0.4, 0.01, 0.165, 0.99);
+
+	summary {
+		@extend .subheading;
+		outline: none;
+		padding: 0;
+		list-style: none;
+
+		@media (hover: hover) {
+			&:hover {
+				cursor: pointer;
+			}
+		}
+	}
+}
+
 
