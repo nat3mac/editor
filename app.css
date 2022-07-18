@@ -95,13 +95,13 @@ body > header .heading {
   background-color: #00ADEF;
 }
 
-.details-section, .details > header {
+.details-section {
   background: #F1F8FE;
   padding: 1rem;
   border-radius: 8px;
   box-shadow: 8px 8px 12px 0 rgba(192, 201, 208, 0.25), -8px -8px 12px 0 rgba(250, 254, 255, 0.5);
 }
-.details-section .subheading, .details-section details summary, details .details-section summary, .details > header .subheading, .details > header details summary, details .details > header summary {
+.details-section .subheading, .details-section details summary, details .details-section summary {
   color: #606D79;
 }
 
@@ -121,6 +121,11 @@ body > header .heading {
   grid-template-columns: 1fr 4fr;
   align-items: center;
   gap: 1rem;
+  background-color: #808C96;
+  padding: 1rem;
+  overflow: visible;
+  border-radius: 2px;
+  box-shadow: 0 2px 4px rgba(0, 17, 34, 0.2), 0 -1rem 0.5rem 1rem #E0E8ED;
 }
 .details > header img {
   grid-column: 1/2;
@@ -132,10 +137,10 @@ body > header .heading {
   grid-column: 2/-1;
 }
 .details > header .patient-name .heading {
-  color: #606D79;
+  color: #F1F8FE;
 }
 .details > header .patient-name .copy, .details > header .patient-name dd {
-  color: #808C96;
+  color: #C0C9D0;
 }
 .details dl {
   grid-column: 1/-1;
@@ -145,11 +150,11 @@ body > header .heading {
   gap: 1rem;
 }
 .details dt {
-  color: #A0ABB3;
+  color: #C0C9D0;
 }
 .details dd {
   margin: 0;
-  color: #606D79;
+  color: #E0E8ED;
 }
 
 #faq {

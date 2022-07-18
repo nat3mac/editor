@@ -23,7 +23,6 @@
 	overflow-y: auto;
 
 	& > header {
-		@extend .details-section;
 		position: sticky;
 		top: 0;
 		display: grid;
@@ -31,6 +30,11 @@
 		grid-template-columns: 1fr 4fr;
 		align-items: center;
 		gap: 1rem;
+		background-color: color.$gray500;
+		padding: 1rem;
+		overflow: visible;
+		border-radius: 2px;
+		box-shadow: 0 2px 4px rgba(color.$gray900, 0.2), 0 -1rem 0.5rem 1rem color.$gray200;
 
 		img {
 			grid-column: 1 / 2;
@@ -42,10 +46,10 @@
 		.patient-name {
 			grid-column: 2 / -1;
 			.heading {
-				color: color.$gray600;
+				color: color.$gray100;
 			}
 			.copy {
-				color: color.$gray500;
+				color: color.$gray300;
 			}
 		}
 	}
@@ -60,14 +64,16 @@
 
 	dt {
 		@extend .caption;
-		color: color.$gray400;
+		color: color.$gray300;
 	}
 
 	dd {
 		@extend .copy;
 		margin: 0;
-		color: color.$gray600;
+		color: color.$gray200;
 	}
+
+
 }
 
 #faq {
